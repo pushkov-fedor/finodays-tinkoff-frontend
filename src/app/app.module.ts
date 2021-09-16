@@ -11,9 +11,18 @@ import { HeaderComponent } from './components/header/header.component';
 
 import { PredictComponent } from './components/predict/predict.component';
 import { ToFixedPipe } from './shared/pipes/to-fixed.pipe';
+import { PredictionComponent } from './pages/prediction/prediction.component';
+import { EditCashbackComponent } from './pages/edit-cashback/edit-cashback.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, PredictComponent, ToFixedPipe],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    PredictComponent,
+    ToFixedPipe,
+    PredictionComponent,
+    EditCashbackComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

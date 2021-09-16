@@ -1,38 +1,4 @@
 <app-header></app-header>
 <div class="content">
-  <div class="search-user-by-id">
-    <h2>Предсказание трат по категориям</h2>
-
-    <div class="input-and-search">
-      <mat-form-field appearance="standard">
-        <mat-label>Введите ID пользователя</mat-label>
-        <input
-          matInput
-          placeholder="50823"
-          [matAutocomplete]="auto"
-          [formControl]="userIdControl"
-        />
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-          <mat-option
-            *ngFor="let userOption of usersOptions"
-            [value]="userOption.party_rk"
-          >
-            {{ userOption.party_rk }}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-      <button
-        class="btn btn-tinkoff"
-        (click)="onPredict()"
-        [disabled]="userIdControl.invalid"
-      >
-        Предсказать
-      </button>
-    </div>
-  </div>
-
-  <div class="user-expenses-result" *ngIf="userMetrics">
-    <h2>Результат</h2>
-    <app-predict [userMetrics]="userMetrics"></app-predict>
-  </div>
+  <router-outlet></router-outlet>
 </div>
