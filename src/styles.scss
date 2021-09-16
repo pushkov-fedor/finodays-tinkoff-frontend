@@ -31,6 +31,14 @@ span.bold {
   margin: auto;
 }
 
+.btn {
+  cursor: pointer;
+
+  &[disabled] {
+    opacity: 0.75;
+  }
+}
+
 .btn-tinkoff {
   height: 40px;
   min-width: 48px;

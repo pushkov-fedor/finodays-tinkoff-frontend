@@ -21,7 +21,13 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-      <button class="btn btn-tinkoff">Предсказать</button>
+      <button
+        class="btn btn-tinkoff"
+        (click)="onPredict()"
+        [disabled]="userIdControl.invalid"
+      >
+        Предсказать
+      </button>
     </div>
   </div>
 
