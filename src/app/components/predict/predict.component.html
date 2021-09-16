@@ -1,0 +1,43 @@
+<div class="container80">
+  <div class="general-info">
+    <div class="user-id column">
+      <span class="first bold">{{ userMetrics.party_rk }}</span>
+      <span class="second">User ID</span>
+    </div>
+    <div class="real-cashback column">
+      <span class="first bold">{{ userMetrics.real_cashback }}₽</span>
+      <span class="second">Real Cashback</span>
+    </div>
+    <div class="predict-cashback column">
+      <span class="first bold">{{ userMetrics.potentional_cashback }}₽</span>
+      <span class="second">Predict Cashback</span>
+    </div>
+  </div>
+  <hr />
+  <div
+    class="predict-category"
+    *ngFor="let category of userMetrics.cashback_category_pred; let i = index"
+  >
+    <div class="left">
+      <div class="category-icon">
+        <img [src]="categoryImage[category]" />
+      </div>
+      <div class="title column">
+        <span class="first bold">{{ category }}</span>
+        <span class="second">{{ mapIndexPosition2Str(i) }}</span>
+      </div>
+    </div>
+    <!-- <div class="right">
+      <div class="real-expense column">
+        <span class="first bold">{{ predict.real_sum }}₽</span>
+        <span class="second">REAL EXPENSE</span>
+      </div>
+      <div class="predict-expense column">
+        <span class="first bold"
+          >{{ predict.predicted_sum | toFixed: 2 }}₽</span
+        >
+        <span class="second">PREDICT EXPENSE</span>
+      </div>
+    </div> -->
+  </div>
+</div>

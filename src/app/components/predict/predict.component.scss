@@ -1,0 +1,68 @@
+.general-info {
+  display: flex;
+  justify-content: space-between;
+  .user-id {
+    align-items: center;
+    font-size: 16px;
+    width: 150px;
+  }
+
+  .real-cashback {
+    align-items: center;
+    width: 150px;
+    .second {
+      color: limegreen;
+    }
+  }
+
+  .predict-cashback {
+    align-items: center;
+    width: 150px;
+    .second {
+      color: darkorange;
+    }
+  }
+
+  .column {
+    span.first {
+      font-size: 20px;
+    }
+
+    span.second {
+      font-size: 16px;
+    }
+  }
+}
+
+.predict-category {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .left {
+    display: flex;
+    .category-icon {
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 10px;
+      }
+    }
+
+    .title {
+      .second {
+        color: rgba(black, 0.8);
+      }
+    }
+  }
+}
+
+hr {
+  margin-bottom: 25px;
+}

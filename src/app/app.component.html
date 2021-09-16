@@ -31,7 +31,8 @@
     </div>
   </div>
 
-  <div class="user-expenses-result">
+  <div class="user-expenses-result" *ngIf="userMetrics">
     <h2>Результат</h2>
+    <app-predict [userMetrics]="userMetrics"></app-predict>
   </div>
 </div>
