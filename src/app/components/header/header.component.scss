@@ -1,0 +1,31 @@
+header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 4px 16px rgba(black, 0.1);
+
+  .container90 {
+    display: flex;
+    justify-content: space-between;
+
+    .brand {
+      font-size: 16px;
+      color: rgba(black, 0.9);
+    }
+
+    ul.navigation {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        font-size: 16px;
+        color: rgba(black, 0.8);
+        display: inline;
+        margin-right: 20px;
+        font-weight: 500;
+      }
+    }
+  }
+}

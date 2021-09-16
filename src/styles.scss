@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+@font-face {
+  font-family: Tinkoff;
+  src: url("https://www.cdn-tinkoff.ru/platform/fonts/TinkoffSans/v1/TinkoffSans.woff2")
+    format("woff2");
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Tinkoff, Roboto, "Helvetica Neue", sans-serif !important;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background-color: #f4f4f4;
+}
+
+span.bold {
+  font-weight: bold;
+}
+
+.container90 {
+  width: 90%;
+  margin: auto;
+}
+
+.btn-tinkoff {
+  height: 40px;
+  min-width: 48px;
+  padding: 10px 35px 10px;
+  background-color: #ffdd2d;
+  border: 1px solid #ffdd2d;
+  border-radius: 5px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.8);
+}
