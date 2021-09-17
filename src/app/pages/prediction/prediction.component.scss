@@ -29,7 +29,7 @@
 
 .user-expenses-result {
   background-color: white;
-  padding: 32px 0;
+  padding: 60px 0;
 
   h2 {
     font-size: 24px;
@@ -52,5 +52,39 @@ mat-spinner {
 .predict-wrapper {
   hr {
     margin: 20px 0;
+  }
+}
+
+.business-metrics-container {
+  padding: 60px 0;
+  background-color: #f4f4f4;
+
+  h2 {
+    font-size: 32px;
+    color: rgba(black, 0.8);
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .business-metrics {
+    padding: 32px;
+    display: flex;
+    justify-content: center;
+
+    .business-metric {
+      margin: 0 20px;
+
+      span.first {
+        font-size: 48px;
+        text-align: center;
+        margin-bottom: 20px;
+        color: rgba(black, 0.9);
+      }
+
+      span.second {
+        font-size: 24px;
+        color: rgba(black, 0.6);
+      }
+    }
   }
 }
