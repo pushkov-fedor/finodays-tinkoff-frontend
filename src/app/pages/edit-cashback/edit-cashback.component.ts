@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TransactionAnalizerService } from 'src/app/core/transaction-analizer.service';
 import { CashbackSettings } from '../../models/cashback-setting.model';
 
@@ -11,10 +12,23 @@ export class EditCashbackComponent implements OnInit {
   constructor(private transactionAnalizerService: TransactionAnalizerService) {}
 
   cashbackSettings: CashbackSettings;
+  formGroup: FormGroup;
 
   ngOnInit() {
+    this.formGroup = new FormGroup({});
     this.transactionAnalizerService.getCashbackSettings().subscribe(
-      (settings) => (this.cashbackSettings = settings),
+      (settings) => {
+        this.cashbackSettings = settings;
+        for (let setting of this.cashbackSettings) {
+          this.formGroup.addControl(
+            setting.name,
+            new FormControl(setting.cashback, [
+              Validators.min(0),
+              Validators.max(1),
+            ])
+          );
+        }
+      },
       (error) => {
         this.cashbackSettings = JSON.parse(`[
             {
@@ -198,7 +212,16 @@ export class EditCashbackComponent implements OnInit {
               "name": "Duty Free"
             }
           ]`);
-        console.log(this.cashbackSettings);
+        for (let setting of this.cashbackSettings) {
+          this.formGroup.addControl(
+            setting.name,
+            new FormControl(setting.cashback, [
+              Validators.min(0),
+              Validators.max(1),
+            ])
+          );
+        }
+        console.log(this.formGroup);
       }
     );
   }

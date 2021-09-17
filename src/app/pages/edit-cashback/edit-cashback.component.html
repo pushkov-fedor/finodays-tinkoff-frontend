@@ -1,0 +1,22 @@
+<div class="container80 edit-cashback">
+  <h2>Изменить процент кэшбека</h2>
+  <div class="controls">
+    <mat-form-field
+      appearance="standard"
+      *ngFor="let control of formGroup.controls | keyvalue"
+    >
+      <mat-label>{{ control.key }}</mat-label>
+      <input matInput type="number" [formControl]="control.value" step="0.01" />
+      <mat-error *ngIf="control.value.hasError('min')">
+        Значение должно быть больше 0
+      </mat-error>
+      <mat-error *ngIf="control.value.hasError('max')">
+        Значение должно быть меньше 1
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <button class="btn btn-tinkoff" [disabled]="formGroup.invalid">
+    Сохранить
+  </button>
+</div>
