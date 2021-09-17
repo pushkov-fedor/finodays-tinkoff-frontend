@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { forkJoin } from 'rxjs';
 import { TransactionAnalizerService } from 'src/app/core/transaction-analizer.service';
 import { Predict } from 'src/app/models/predict.model';
 import { UserMetrics } from 'src/app/models/user-metrics.model';
@@ -20,7 +21,7 @@ export class PredictionComponent {
   pageIndex = 0;
   usersPerPage = 30;
 
-  userMetrics: UserMetrics;
+  userMetrics: UserMetrics[];
 
   ngOnInit() {
     this.transactionAnalizerService.getAllUsers().subscribe((users) => {
@@ -34,11 +35,19 @@ export class PredictionComponent {
   }
 
   onPredict() {
-    this.transactionAnalizerService
-      .getUserMetrics(this.userIdControl.value)
-      .subscribe((metrics) => {
-        this.userMetrics = metrics;
-      });
+    forkJoin(
+      this.transactionAnalizerService.getUserMetrics(
+        this.userIdControl.value,
+        1
+      ),
+      this.transactionAnalizerService.getUserMetrics(
+        this.userIdControl.value,
+        2
+      )
+    ).subscribe(([um1, um2]) => {
+      this.userMetrics = [um1, um2];
+      console.log(this.userMetrics);
+    });
   }
 
   getUsersOptions(value?: string) {

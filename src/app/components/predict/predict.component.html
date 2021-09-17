@@ -1,18 +1,24 @@
 <div class="container80 predict">
-  <div class="card">
+  <div class="card" *ngFor="let userMetric of userMetrics; let i = index">
     <div class="description">
-      <div class="left user-id column">
-        <span class="first bold">{{ userMetrics.party_rk }}</span>
-        <span class="second">User ID</span>
+      <div class="left">
+        <div class="user-id column">
+          <span class="first bold">{{ userMetric.party_rk }}</span>
+          <span class="second">User ID</span>
+        </div>
+        <div class="month column">
+          <span class="first bold">{{ i + 1 }}</span>
+          <span class="second">месяц</span>
+        </div>
       </div>
       <div class="right cashbacks">
         <div class="column">
           <div class="potential">
-            <span class="bold">{{ userMetrics.potentional_cashback }}₽</span>
+            <span class="bold">{{ userMetric.potentional_cashback }}₽</span>
             Потенциальный кэшбек
           </div>
           <div class="earned">
-            <span class="bold">{{ userMetrics.real_cashback }}₽</span>
+            <span class="bold">{{ userMetric.real_cashback }}₽</span>
             Заработанный кэшбек
           </div>
         </div>
@@ -25,7 +31,7 @@
         <div
           class="category column"
           *ngFor="
-            let category of userMetrics.cashback_category_pred;
+            let category of userMetric.cashback_category_pred;
             let i = index
           "
         >

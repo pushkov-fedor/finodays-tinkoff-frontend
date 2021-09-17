@@ -7,6 +7,7 @@ import { UserMetrics } from '../models/user-metrics.model';
 import { User } from '../models/user.model';
 
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +31,7 @@ export class TransactionAnalizerService {
     );
   }
 
-  getUserMetrics(user_id: number, month: 1 | 2 = 1) {
+  getUserMetrics(user_id: number, month: 1 | 2 = 1): Observable<UserMetrics> {
     return this.http
       .get<[UserMetrics]>(`${environment.webApiBaseUrl}/metrics`, {
         params: {
