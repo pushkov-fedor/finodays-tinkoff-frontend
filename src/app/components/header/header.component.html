@@ -4,8 +4,19 @@
       <span class="bold">FINODAYS</span> x <span class="bold">ТИНЬКОФФ</span>
     </div>
     <ul class="navigation">
-      <li><a routerLink="/">Главная</a></li>
-      <li><a routerLink="/edit-cashback">Настройка кэшбека</a></li>
+      <li>
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Главная</a
+        >
+      </li>
+      <li>
+        <a routerLink="/edit-cashback" routerLinkActive="active"
+          >Настройка кэшбека</a
+        >
+      </li>
     </ul>
   </div>
 </header>

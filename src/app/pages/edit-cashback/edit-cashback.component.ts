@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { forkJoin } from 'rxjs';
 import { TransactionAnalizerService } from 'src/app/core/transaction-analizer.service';
 import { CategoryImage } from 'src/app/models/category-image.enum';
 import { CashbackSettings } from '../../models/cashback-setting.model';
@@ -33,5 +34,20 @@ export class EditCashbackComponent implements OnInit {
           );
         }
       });
+  }
+
+  saveCashbackSettings() {
+    console.log(Object.entries(this.formGroup.controls));
+    forkJoin(
+      Object.entries(this.formGroup.controls).map(
+        ([categoryName, control]: [string, FormControl]) =>
+          this.transactionAnalizerService.updateCashbackSettings(
+            categoryName,
+            String(control.value / 100)
+          )
+      )
+    ).subscribe((res) => {
+      console.log(res);
+    });
   }
 }

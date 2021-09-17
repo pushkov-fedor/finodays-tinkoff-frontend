@@ -79,3 +79,8 @@ a:active {
 button:focus {
   outline: 0;
 }
+
+.mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #ffdd2d;
+}

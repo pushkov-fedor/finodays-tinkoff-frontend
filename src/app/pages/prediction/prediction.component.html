@@ -32,7 +32,7 @@
     </button>
   </div>
 </div>
-
+<mat-spinner *ngIf="isLoading"></mat-spinner>
 <div class="user-expenses-result" *ngIf="usersMetrics.length > 0">
   <h2>Результат</h2>
   <div

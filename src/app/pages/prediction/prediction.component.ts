@@ -22,6 +22,8 @@ export class PredictionComponent {
 
   usersMetrics: UserMetrics[][] = [];
 
+  isLoading = false;
+
   ngOnInit() {
     this.transactionAnalizerService.getAllUsers().subscribe((users) => {
       this.users = users;
@@ -34,6 +36,7 @@ export class PredictionComponent {
   }
 
   onPredict() {
+    this.isLoading = true;
     forkJoin(
       this.transactionAnalizerService.getUserMetrics(
         this.userIdControl.value,
@@ -54,6 +57,7 @@ export class PredictionComponent {
       if (!hasUserMertrics) {
         this.usersMetrics.push([um1, um2]);
       }
+      this.isLoading = false;
     });
   }
 

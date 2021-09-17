@@ -30,6 +30,18 @@ export class TransactionAnalizerService {
       `${environment.webApiBaseUrl}/cashback`
     );
   }
+  updateCashbackSettings(value: string, category: string) {
+    return this.http.post(
+      `${environment.webApiBaseUrl}/cashback`,
+      {},
+      {
+        params: {
+          value,
+          category,
+        },
+      }
+    );
+  }
 
   getUserMetrics(user_id: number, month: 1 | 2 = 1): Observable<UserMetrics> {
     return this.http

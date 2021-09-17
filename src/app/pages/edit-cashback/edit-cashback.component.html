@@ -25,7 +25,11 @@
     </div>
   </div>
 
-  <button class="btn btn-tinkoff" [disabled]="formGroup.invalid">
+  <button
+    class="btn btn-tinkoff"
+    [disabled]="formGroup.invalid"
+    (click)="saveCashbackSettings()"
+  >
     Сохранить
   </button>
 </div>
