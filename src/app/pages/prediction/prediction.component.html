@@ -33,7 +33,15 @@
   </div>
 </div>
 
-<div class="user-expenses-result" *ngIf="userMetrics">
+<div class="user-expenses-result" *ngIf="usersMetrics.length > 0">
   <h2>Результат</h2>
-  <app-predict [userMetrics]="userMetrics"></app-predict>
+  <div
+    class="predict-wrapper"
+    *ngFor="let userMetrics of usersMetrics; let i = index"
+  >
+    <app-predict [userMetrics]="userMetrics"></app-predict>
+    <div class="container80">
+      <hr *ngIf="i !== usersMetrics.length - 1" />
+    </div>
+  </div>
 </div>

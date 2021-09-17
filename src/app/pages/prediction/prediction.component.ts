@@ -21,7 +21,7 @@ export class PredictionComponent {
   pageIndex = 0;
   usersPerPage = 30;
 
-  userMetrics: UserMetrics[];
+  usersMetrics: UserMetrics[][] = [];
 
   ngOnInit() {
     this.transactionAnalizerService.getAllUsers().subscribe((users) => {
@@ -45,8 +45,16 @@ export class PredictionComponent {
         2
       )
     ).subscribe(([um1, um2]) => {
-      this.userMetrics = [um1, um2];
-      console.log(this.userMetrics);
+      this.userIdControl.setValue('');
+      this.userIdControl.reset();
+      this.pageIndex = 0;
+      const hasUserMertrics = this.usersMetrics.find((userMetrics) => {
+        const [userMetric1] = userMetrics;
+        return userMetric1.party_rk === um1.party_rk;
+      });
+      if (!hasUserMertrics) {
+        this.usersMetrics.push([um1, um2]);
+      }
     });
   }
 
@@ -55,7 +63,7 @@ export class PredictionComponent {
     const options = this.users
       .filter((user) => {
         const userPrkStr = String(user.party_rk);
-        return userPrkStr.startsWith(searchTerm);
+        return !searchTerm ?? userPrkStr.startsWith(searchTerm);
       })
       .slice(0, (this.pageIndex + 1) * this.usersPerPage);
     this.pageIndex++;
