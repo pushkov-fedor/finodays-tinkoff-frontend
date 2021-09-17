@@ -31,16 +31,12 @@ export class TransactionAnalizerService {
     );
   }
   updateCashbackSettings(value: string, category: string) {
-    return this.http.post(
-      `${environment.webApiBaseUrl}/cashback`,
-      {},
-      {
-        params: {
-          value,
-          category,
-        },
-      }
-    );
+    return this.http.get(`${environment.webApiBaseUrl}/cashback/set`, {
+      params: {
+        value,
+        category,
+      },
+    });
   }
 
   getUserMetrics(user_id: number, month: 1 | 2 = 1): Observable<UserMetrics> {
