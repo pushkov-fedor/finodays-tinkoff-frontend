@@ -32,7 +32,7 @@ export class TransactionAnalizerService {
 
   getUserMetrics(user_id: number, month: 1 | 2 = 1) {
     return this.http
-      .get<[UserMetrics]>(`${environment.webApiBaseUrl}/mentrics`, {
+      .get<[UserMetrics]>(`${environment.webApiBaseUrl}/metrics`, {
         params: {
           user_id: String(user_id),
           month: String(month),
