@@ -51,14 +51,14 @@
   <div class="container80 business-metrics">
     <div class="business-metric column">
       <span class="first bold">{{ averageMetrics1.cashback_ratio }}%</span>
-      <span class="second">Предсказанный кэшбек/Реальный кэшбек</span>
+      <span class="second">Предсказанный кэшбек/Потенциальный кэшбек</span>
     </div>
     <div class="business-metric column">
       <span class="first bold"
         >{{ averageMetrics1.potentional_cashback_all_user_sum }}₽</span
       >
       <span class="second"
-        >Среднее значение реального кэшбека по всем пользователям</span
+        >Среднее значение потенциального кэшбека по всем пользователям</span
       >
     </div>
     <div class="business-metric column">
@@ -72,7 +72,7 @@
     <div class="business-metric column">
       <span class="first bold">{{ averageMetrics1.delta }}₽</span>
       <span class="second"
-        >Разница между реальным кэшбеком и предсказанным</span
+        >Разница между потенциальным кэшбеком и предсказанным</span
       >
     </div>
   </div>
@@ -84,14 +84,14 @@
   <div class="container80 business-metrics">
     <div class="business-metric column">
       <span class="first bold">{{ averageMetrics2.cashback_ratio }}%</span>
-      <span class="second">Предсказанный кэшбек/Реальный кэшбек</span>
+      <span class="second">Предсказанный кэшбек/Потенциальный кэшбек</span>
     </div>
     <div class="business-metric column">
       <span class="first bold"
         >{{ averageMetrics2.potentional_cashback_all_user_sum }}₽</span
       >
       <span class="second"
-        >Среднее значение реального кэшбека по всем пользователям</span
+        >Среднее значение потенциального кэшбека по всем пользователям</span
       >
     </div>
     <div class="business-metric column">
@@ -105,7 +105,7 @@
     <div class="business-metric column">
       <span class="first bold">{{ averageMetrics2.delta }}₽</span>
       <span class="second"
-        >Разница между реальным кэшбеком и предсказанным</span
+        >Разница между потенциальным кэшбеком и предсказанным</span
       >
     </div>
   </div>
@@ -113,7 +113,7 @@
 
 <div class="loading-backdrop" *ngIf="isLoading">
   <div class="spinner-container">
-    <h3>Подождите пожалуйста 15-20 секунд</h3>
+    <h3 *ngIf="loadingMessage">Подождите пожалуйста 15-20 секунд</h3>
     <mat-spinner></mat-spinner>
   </div>
 </div>

@@ -29,9 +29,11 @@ export class PredictionComponent {
   averageMetrics2: AverageMetrics;
 
   isLoading = false;
+  loadingMessage = '';
 
   ngOnInit() {
     this.isLoading = true;
+    this.loadingMessage = 'Подождите пожалуйста 15-20 секунд';
     forkJoin(
       this.transactionAnalizerService.getAllUsers(),
       this.transactionAnalizerService.getAverageMetrics(1),
@@ -42,6 +44,7 @@ export class PredictionComponent {
       this.averageMetrics1 = am1;
       this.averageMetrics2 = am2;
       this.isLoading = false;
+      this.loadingMessage = '';
       console.log(am1, am2);
     });
 
