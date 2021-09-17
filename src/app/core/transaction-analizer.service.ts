@@ -8,6 +8,7 @@ import { User } from '../models/user.model';
 
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { AverageMetrics } from '../models/average-metrics.model';
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +31,7 @@ export class TransactionAnalizerService {
       `${environment.webApiBaseUrl}/cashback`
     );
   }
+
   updateCashbackSettings(category: string, value: string) {
     return this.http.get(`${environment.webApiBaseUrl}/cashback/set`, {
       params: {
@@ -48,5 +50,17 @@ export class TransactionAnalizerService {
         },
       })
       .pipe(map(([metrics]) => metrics));
+  }
+
+  getAverageMetrics(month: 1 | 2, users_count: number = 4000) {
+    return this.http.get<AverageMetrics>(
+      `${environment.webApiBaseUrl}/metrics_average`,
+      {
+        params: {
+          users_count: String(users_count),
+          month: String(month),
+        },
+      }
+    );
   }
 }

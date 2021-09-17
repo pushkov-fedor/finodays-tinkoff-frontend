@@ -1,7 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { forkJoin } from 'rxjs';
+import { timeout } from 'rxjs/operators';
 import { TransactionAnalizerService } from 'src/app/core/transaction-analizer.service';
+import { AverageMetrics } from 'src/app/models/average-metrics.model';
 import { UserMetrics } from 'src/app/models/user-metrics.model';
 import { User } from 'src/app/models/user.model';
 
@@ -21,17 +23,32 @@ export class PredictionComponent {
   usersPerPage = 30;
 
   usersMetrics: UserMetrics[][] = [];
+  averageMetrics: AverageMetrics;
+
+  averageMetrics1: AverageMetrics;
+  averageMetrics2: AverageMetrics;
 
   isLoading = false;
 
   ngOnInit() {
-    this.transactionAnalizerService.getAllUsers().subscribe((users) => {
+    this.isLoading = true;
+    forkJoin(
+      this.transactionAnalizerService.getAllUsers(),
+      this.transactionAnalizerService.getAverageMetrics(1),
+      this.transactionAnalizerService.getAverageMetrics(2)
+    ).subscribe(([users, am1, am2]) => {
       this.users = users;
       this.usersOptions = this.getUsersOptions();
+      this.averageMetrics1 = am1;
+      this.averageMetrics2 = am2;
+      this.isLoading = false;
+      console.log(am1, am2);
     });
+
     this.userIdControl.valueChanges.subscribe((value) => {
       this.pageIndex = 0;
-      this.usersOptions = this.getUsersOptions(value);
+      this.usersOptions = this.getUsersOptions();
+      console.log(this.usersOptions);
     });
   }
 
@@ -47,8 +64,8 @@ export class PredictionComponent {
         2
       )
     ).subscribe(([um1, um2]) => {
-      this.userIdControl.setValue('');
       this.userIdControl.reset();
+      this.userIdControl.setValue('');
       this.pageIndex = 0;
       const hasUserMertrics = this.usersMetrics.find((userMetrics) => {
         const [userMetric1] = userMetrics;
@@ -61,16 +78,18 @@ export class PredictionComponent {
     });
   }
 
-  getUsersOptions(value?: string) {
-    const searchTerm = value ?? this.userIdControl.value;
-    const options = this.users
-      .filter((user) => {
-        const userPrkStr = String(user.party_rk);
-        return !searchTerm ?? userPrkStr.startsWith(searchTerm);
-      })
-      .slice(0, (this.pageIndex + 1) * this.usersPerPage);
+  getUsersOptions() {
+    const searchTerm = this.userIdControl.value;
+    const options = this.users.slice(0, 200).filter((user) => {
+      const userPrkStr = String(user.party_rk);
+      return userPrkStr.startsWith(searchTerm);
+    });
+    const slicedOptions = options.slice(
+      0,
+      (this.pageIndex + 1) * this.usersPerPage
+    );
     this.pageIndex++;
-    return options;
+    return slicedOptions;
   }
 
   onScroll(event) {

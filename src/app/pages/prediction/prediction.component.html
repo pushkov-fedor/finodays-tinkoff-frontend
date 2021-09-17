@@ -32,7 +32,7 @@
     </button>
   </div>
 </div>
-<mat-spinner *ngIf="isLoading"></mat-spinner>
+<!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
 <div class="user-expenses-result" *ngIf="usersMetrics.length > 0">
   <h2>Результат</h2>
   <div
@@ -45,20 +45,75 @@
     </div>
   </div>
 </div>
-<div class="business-metrics-container">
+<div class="business-metrics-container" *ngIf="averageMetrics1">
   <h2>Бизнес метрики</h2>
+  <h3>Первый месяц</h3>
   <div class="container80 business-metrics">
     <div class="business-metric column">
-      <span class="first bold">45</span>
-      <span class="second">Какая-то метрика</span>
+      <span class="first bold">{{ averageMetrics1.cashback_ratio }}%</span>
+      <span class="second">Предсказанный кэшбек/Реальный кэшбек</span>
     </div>
     <div class="business-metric column">
-      <span class="first bold">45</span>
-      <span class="second">Какая-то метрика</span>
+      <span class="first bold"
+        >{{ averageMetrics1.potentional_cashback_all_user_sum }}₽</span
+      >
+      <span class="second"
+        >Среднее значение реального кэшбека по всем пользователям</span
+      >
     </div>
     <div class="business-metric column">
-      <span class="first bold">45</span>
-      <span class="second">Какая-то метрика</span>
+      <span class="first bold"
+        >{{ averageMetrics1.real_cashback_all_user_sum }}₽</span
+      >
+      <span class="second"
+        >Среднее значение предсказанного кэшбека по всем пользователям</span
+      >
     </div>
+    <div class="business-metric column">
+      <span class="first bold">{{ averageMetrics1.delta }}₽</span>
+      <span class="second"
+        >Разница между реальным кэшбеком и предсказанным</span
+      >
+    </div>
+  </div>
+  <div class="container80">
+    <hr />
+  </div>
+
+  <h3>Второй месяц</h3>
+  <div class="container80 business-metrics">
+    <div class="business-metric column">
+      <span class="first bold">{{ averageMetrics2.cashback_ratio }}%</span>
+      <span class="second">Предсказанный кэшбек/Реальный кэшбек</span>
+    </div>
+    <div class="business-metric column">
+      <span class="first bold"
+        >{{ averageMetrics2.potentional_cashback_all_user_sum }}₽</span
+      >
+      <span class="second"
+        >Среднее значение реального кэшбека по всем пользователям</span
+      >
+    </div>
+    <div class="business-metric column">
+      <span class="first bold"
+        >{{ averageMetrics2.real_cashback_all_user_sum }}₽</span
+      >
+      <span class="second"
+        >Среднее значение предсказанного кэшбека по всем пользователям</span
+      >
+    </div>
+    <div class="business-metric column">
+      <span class="first bold">{{ averageMetrics2.delta }}₽</span>
+      <span class="second"
+        >Разница между реальным кэшбеком и предсказанным</span
+      >
+    </div>
+  </div>
+</div>
+
+<div class="loading-backdrop" *ngIf="isLoading">
+  <div class="spinner-container">
+    <h3>Подождите пожалуйста 15-20 секунд</h3>
+    <mat-spinner></mat-spinner>
   </div>
 </div>
