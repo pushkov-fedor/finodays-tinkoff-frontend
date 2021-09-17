@@ -1,68 +1,85 @@
-.general-info {
-  display: flex;
-  justify-content: space-between;
-  .user-id {
-    align-items: center;
-    font-size: 16px;
-    width: 150px;
-  }
-
-  .real-cashback {
-    align-items: center;
-    width: 150px;
-    .second {
-      color: limegreen;
-    }
-  }
-
-  .predict-cashback {
-    align-items: center;
-    width: 150px;
-    .second {
-      color: darkorange;
-    }
-  }
-
-  .column {
-    span.first {
-      font-size: 20px;
-    }
-
-    span.second {
-      font-size: 16px;
-    }
-  }
+* {
+  color: rgba(black, 0.8);
 }
-
-.predict-category {
+.predict {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
 
-  &:last-child {
-    margin-bottom: 0;
-  }
+  .card {
+    width: 50%;
+    padding: 32px;
+    margin-right: 16px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
 
-  .left {
-    display: flex;
-    .category-icon {
-      img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-right: 10px;
+    .description {
+      display: flex;
+      justify-content: space-between;
+
+      .user-id {
+        display: flex;
+        align-items: center;
+        svg {
+          margin-right: 5px;
+        }
+        span.first {
+          font-size: 20px;
+        }
+
+        span.second {
+          font-size: 16px;
+        }
+      }
+
+      .cashbacks {
+        .potential,
+        .earned {
+          font-size: 16px;
+          text-align: right;
+
+          span {
+            margin-right: 10px;
+            font-size: 20px;
+          }
+        }
       }
     }
 
-    .title {
-      .second {
-        color: rgba(black, 0.8);
+    hr {
+      margin: 10px 0 10px 0;
+    }
+
+    .categories {
+      p {
+        font-size: 20px;
+        text-align: center;
+        margin: 15px 0 10px 0;
+      }
+      .row {
+        display: flex;
+        .category {
+          width: 33%;
+          align-items: center;
+
+          img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+          }
+
+          .category-name {
+            font-size: 16px;
+            text-align: center;
+            flex-grow: 1;
+            font-weight: bold;
+          }
+
+          .category-position {
+            font-size: 12px;
+            color: rgba(black, 0.6);
+          }
+        }
       }
     }
   }
-}
-
-hr {
-  margin-bottom: 25px;
 }
