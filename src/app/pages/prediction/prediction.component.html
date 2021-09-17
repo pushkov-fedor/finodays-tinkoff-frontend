@@ -10,7 +10,11 @@
         [matAutocomplete]="auto"
         [formControl]="userIdControl"
       />
-      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-autocomplete
+        autoActiveFirstOption
+        #auto="matAutocomplete"
+        (optionsScroll)="onScroll($event)"
+      >
         <mat-option
           *ngFor="let userOption of usersOptions"
           [value]="userOption.party_rk"

@@ -13,6 +13,7 @@ import { PredictComponent } from './components/predict/predict.component';
 import { ToFixedPipe } from './shared/pipes/to-fixed.pipe';
 import { PredictionComponent } from './pages/prediction/prediction.component';
 import { EditCashbackComponent } from './pages/edit-cashback/edit-cashback.component';
+import { OptionsScrollDirective } from './shared/directives/options-scroll.directive';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { EditCashbackComponent } from './pages/edit-cashback/edit-cashback.compo
     ToFixedPipe,
     PredictionComponent,
     EditCashbackComponent,
+    OptionsScrollDirective,
   ],
   imports: [
     BrowserModule,

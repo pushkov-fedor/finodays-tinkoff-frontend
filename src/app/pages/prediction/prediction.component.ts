@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { TransactionAnalizerService } from 'src/app/core/transaction-analizer.service';
 import { Predict } from 'src/app/models/predict.model';
@@ -17,28 +17,20 @@ export class PredictionComponent {
   users: User[] = [];
   usersOptions: User[] = [];
 
+  pageIndex = 0;
+  usersPerPage = 30;
+
   userPrediction: Predict[] = [];
-  userPredictTop3: Predict[] = [];
   userMetrics: UserMetrics;
 
   ngOnInit() {
-    this.transactionAnalizerService.getAllUsers().subscribe(
-      (users) => {
-        this.users = users;
-        this.usersOptions = this.users;
-      },
-      (error) => {
-        this.users = JSON.parse(
-          '[{"party_rk":5},{"party_rk":7},{"party_rk":11},{"party_rk":13},{"party_rk":14},{"party_rk":15},{"party_rk":20},{"party_rk":23},{"party_rk":24},{"party_rk":28},{"party_rk":29}]'
-        );
-        this.usersOptions = this.users;
-      }
-    );
+    this.transactionAnalizerService.getAllUsers().subscribe((users) => {
+      this.users = users;
+      this.usersOptions = this.getUsersOptions();
+    });
     this.userIdControl.valueChanges.subscribe((value) => {
-      this.usersOptions = this.users.filter((user) => {
-        const userPrkStr = String(user.party_rk);
-        return userPrkStr.startsWith(value);
-      });
+      this.pageIndex = 0;
+      this.usersOptions = this.getUsersOptions(value);
     });
   }
 
@@ -308,8 +300,6 @@ export class PredictionComponent {
           ).sort(
             (p1, p2) => Number(p2.predicted_sum) - Number(p1.predicted_sum)
           );
-          this.userPredictTop3 = this.userPrediction.slice(0, 3);
-          console.log(this.userPredictTop3);
         }
       );
 
@@ -335,5 +325,21 @@ export class PredictionComponent {
           console.log(this.userMetrics);
         }
       );
+  }
+
+  getUsersOptions(value?: string) {
+    const searchTerm = value ?? this.userIdControl.value;
+    const options = this.users
+      .filter((user) => {
+        const userPrkStr = String(user.party_rk);
+        return userPrkStr.startsWith(searchTerm);
+      })
+      .slice(0, (this.pageIndex + 1) * this.usersPerPage);
+    this.pageIndex++;
+    return options;
+  }
+
+  onScroll(event) {
+    this.usersOptions = this.getUsersOptions();
   }
 }
