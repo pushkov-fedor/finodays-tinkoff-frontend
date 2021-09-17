@@ -59,7 +59,7 @@ export class OptionsScrollDirective implements OnDestroy {
           setTimeout(() => {
             // Note: remove listner just for safety, in case the close event is skipped.
             this.removeScrollEventListener();
-            this.autoComplete.panel.nativeElement.addEventListener(
+            this.autoComplete.panel.nativeElement?.addEventListener(
               'scroll',
               this.onScroll.bind(this)
             );
@@ -78,22 +78,21 @@ export class OptionsScrollDirective implements OnDestroy {
   }
 
   private removeScrollEventListener() {
-    this.autoComplete.panel.nativeElement.removeEventListener(
+    this.autoComplete?.panel?.nativeElement?.removeEventListener(
       'scroll',
       this.onScroll
     );
   }
 
   ngOnDestroy() {
+    this.removeScrollEventListener();
+
     this._onDestroy.next();
     this._onDestroy.complete();
-
-    this.removeScrollEventListener();
   }
 
   onScroll(event: Event) {
     if (this.thresholdPercent === undefined) {
-      console.log('1');
       this.scroll.next({ autoComplete: this.autoComplete, scrollEvent: event });
     } else {
       const threshold =

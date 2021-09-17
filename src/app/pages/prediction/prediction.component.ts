@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { TransactionAnalizerService } from 'src/app/core/transaction-analizer.service';
-import { Predict } from 'src/app/models/predict.model';
 import { UserMetrics } from 'src/app/models/user-metrics.model';
 import { User } from 'src/app/models/user.model';
 

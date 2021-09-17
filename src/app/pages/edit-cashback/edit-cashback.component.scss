@@ -13,11 +13,35 @@
   .controls {
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 20px;
 
-    mat-form-field {
-      width: 33%;
-      padding-right: 35px;
-      margin-bottom: 10px;
+    .control-card {
+      background-color: white;
+      height: 150px;
+      width: calc(50% - 20px);
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+
+      &:nth-child(odd) {
+        margin-right: 20px;
+      }
+
+      img {
+        width: 20%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .column {
+        .control-label {
+          font-size: 20px;
+          color: rgba(black, 0.8);
+        }
+
+        padding: 15px;
+        width: 80%;
+      }
     }
   }
 }
