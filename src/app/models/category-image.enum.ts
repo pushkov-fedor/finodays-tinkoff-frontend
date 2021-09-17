@@ -3,7 +3,7 @@ export enum CategoryImage {
   'Супермаркеты' = 'https://barcelonatm.ru/wp-content/uploads/2018/01/supermarkety-v-barselone-1.jpg',
   'Разные товары' = 'https://blog.1424marketinggroup.com/hs-fs/hub/414495/file-2022338120-jpg/raw_images/holidays/1424-Photorealistic-D-shopping-cart.jpg',
   'Транспорт' = 'https://automediapro.ru/upload/content_images/2019-0/5cd4de5ea2016bb67d662b0eb506c557.jpg',
-  'Связь/Телеком' = 'http://www.zmnvest.ru/upload/iblock/a3c/original.jpg',
+  'Связь/Телеком' = 'https://politeka.net/images/2015/08/07/6PBk3trmBZMZv4ZvlLqRBEGUhqIB7cNx.jpg',
   'Топливо' = 'https://findesk.ru/upload/iblock/8f7/8f7c44afc937212edfe19de177299407.jpg',
   'Финансовые услуги' = 'https://st.depositphotos.com/1005404/1692/i/600/depositphotos_16920649-stock-photo-big-bank.jpg',
   'Авиабилеты' = 'https://cdn21.img.ria.ru/images/148211/15/1482111521_0:283:5424:3334_1920x0_80_0_0_07780dfcdd42e58f06b12eae0656e952.jpg',
