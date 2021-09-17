@@ -37,7 +37,6 @@ export class EditCashbackComponent implements OnInit {
   }
 
   saveCashbackSettings() {
-    console.log(Object.entries(this.formGroup.controls));
     forkJoin(
       Object.entries(this.formGroup.controls).map(
         ([categoryName, control]: [string, FormControl]) =>

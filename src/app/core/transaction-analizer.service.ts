@@ -30,11 +30,11 @@ export class TransactionAnalizerService {
       `${environment.webApiBaseUrl}/cashback`
     );
   }
-  updateCashbackSettings(value: string, category: string) {
+  updateCashbackSettings(category: string, value: string) {
     return this.http.get(`${environment.webApiBaseUrl}/cashback/set`, {
       params: {
-        value,
         category,
+        value,
       },
     });
   }
