@@ -18,6 +18,8 @@ export class EditCashbackComponent implements OnInit {
   cashbackSettings: CashbackSettings;
   formGroup: FormGroup;
 
+  isLoading = false;
+
   ngOnInit() {
     this.formGroup = new FormGroup({});
     this.transactionAnalizerService
@@ -37,6 +39,7 @@ export class EditCashbackComponent implements OnInit {
   }
 
   saveCashbackSettings() {
+    this.isLoading = true;
     forkJoin(
       Object.entries(this.formGroup.controls).map(
         ([categoryName, control]: [string, FormControl]) =>
@@ -46,6 +49,7 @@ export class EditCashbackComponent implements OnInit {
           )
       )
     ).subscribe((res) => {
+      this.isLoading = false;
       console.log(res);
     });
   }
